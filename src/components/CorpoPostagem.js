@@ -4,6 +4,7 @@ import { Row, Col } from "antd";
 import Cometarios from "../containers/Comentarios";
 import Voto from "./Voto";
 import { capitalizar, datacao } from "../utils/helpers";
+import ReactMarkdown from "react-markdown";
 
 class CorpoPostagem extends Component {
   render() {
@@ -25,6 +26,9 @@ class CorpoPostagem extends Component {
             <Link to={`/${post.category}`}>{capitalizar(post.category)}</Link>
           </div>
           <hr />
+          <div>
+            <ReactMarkdown source={post.body} />
+          </div>
         </div>
         <Cometarios comments={comments} />
       </div>

@@ -132,7 +132,8 @@ const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(fetchCategories())
 });
 
+const NovoFormulario = Form.create()(FormularioPostagem);
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(FormularioPostagem));
+)(withRouter(NovoFormulario));
