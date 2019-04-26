@@ -16,9 +16,9 @@ export const capitalizar = (str = "") => {
 };
 
 export const ordemData = list => {
-  return list.sort((a, b) => a.timestamp < b.timestamp);
+  return list.sort((a, b) => b.timestamp - a.timestamp);
 };
 
 export const ordemVoto = list => {
-  return list.sort((a, b) => b.voteScore > a.voteScore);
+  return list.sort((a, b) => b.voteScore - a.voteScore);
 };
