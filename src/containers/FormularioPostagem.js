@@ -17,11 +17,11 @@ class FormularioPostagem extends Component {
     this.state = {
       redirect: false,
       editMode: location.pathname === "/edit",
-      id: post ? post.id : uuid.v4(),
-      title: post ? post.title : "",
-      author: post ? post.author : "",
-      category: post ? post.category : "",
-      body: post ? post.body : ""
+      id: post && !!post.id ? post.id : uuid.v4(),
+      title: post && !!post.title ? post.title : "",
+      author: post && !!post.author ? post.author : "",
+      category: post && !!post.category ? post.category : "",
+      body: post && !!post.body ? post.body : ""
     };
   }
 
@@ -43,6 +43,15 @@ class FormularioPostagem extends Component {
       category: this.state.category,
       body: this.state.body
     };
+    if (
+      !post.id ||
+      !post.title ||
+      !post.author ||
+      !post.category ||
+      !post.body
+    ) {
+      return;
+    }
 
     if (this.state.editMode) {
       this.props.editPost(post).then(() =>
