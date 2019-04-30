@@ -1,6 +1,7 @@
 import * as api from "../utils/api";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
+export const NOT_FOUND = 'NOT_FOUND'
 
 export const fetchPosts = category => {
   return dispatch => {
@@ -13,13 +14,20 @@ export const fetchPosts = category => {
   };
 };
 
+
 export const fetchPost = id => {
   return dispatch => {
-    return api.fetchPost(id).then(post =>
-      dispatch({
-        type: RECEIVE_POST,
-        post
-      })
+    return api.fetchPost(id).then(post =>{
+      if(!post.id) {
+        dispatch({type: NOT_FOUND})
+      }else{
+        dispatch({
+          type: RECEIVE_POST,
+          post
+        })
+      }
+    }
+      
     );
   };
 };

@@ -27,10 +27,13 @@ class PostagemDetalhe extends Component {
   };
 
   render() {
-    const { post, comments } = this.props;
+    const { post, comments} = this.props;
 
     if (this.state.redirect) {
       return <Redirect to="/" />;
+    }
+    if(post.error){
+      return <Redirect to='/erro' />
     }
 
     return (
@@ -81,9 +84,10 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ posts, comments }) => ({
+const mapStateToProps = ({ posts, comments, error}) => ({
   post: posts,
-  comments: comments
+  comments: comments,
+  error
 });
 
 const mapDispatchToProps = dispatch => ({
